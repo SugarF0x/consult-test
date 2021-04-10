@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    ToR(:doc="$options.name")
+    nuxt-content(:document="document")
     v-row(justify="center")
       v-col(cols="12" sm="6")
         v-card(style="position: relative")
@@ -44,6 +44,11 @@ export default Vue.extend({
       this.time = new Date()
       this.formatTime()
     }
+  },
+  async asyncData({ $content }) {
+    const document = await $content('task-3').fetch()
+
+    return { document }
   },
   data() {
     return {

@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    ToR(:doc="$options.name").mb-5
+    nuxt-content(:document="document").mb-5
     code(
       v-for="(values, index) in demoValues"
       :key="'demo' + index"
@@ -35,6 +35,11 @@ export default Vue.extend({
         ['!!???!????', '??!!?!!!!!!!'], // Balance
       ]
     }
+  },
+  async asyncData({ $content }) {
+    const document = await $content('task-1').fetch()
+
+    return { document }
   },
   methods: {
     balance

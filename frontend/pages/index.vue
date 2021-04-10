@@ -1,12 +1,17 @@
 <template lang="pug">
-  ToR(doc="home")
+  nuxt-content(:document="document")
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: "index"
+  name: "index",
+  async asyncData({ $content }) {
+    const document = await $content('home').fetch()
+
+    return { document }
+  },
 })
 </script>
 
