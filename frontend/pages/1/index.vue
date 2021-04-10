@@ -1,15 +1,61 @@
 <template lang="pug">
-  ToR(:doc="$options.name")
+  div
+    ToR(:doc="$options.name").mb-5
+    code(
+      v-for="(values, index) in demoValues"
+      :key="'demo' + index"
+    ).d-flex
+      div.func balance
+      div (
+      v-text-field(
+        v-model="values[0]"
+        hide-details
+      )
+      div.synt ,
+      v-text-field(
+        v-model="values[1]"
+        hide-details
+      )
+      div )
+      div.comment.ml-2 // {{ balance(...values) }}
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { balance } from "~/assets/util"
 
 export default Vue.extend({
-  name: "task-1"
+  name: "task-1",
+  data() {
+    return {
+      demoValues: [
+        ['!!', '??'], // Right
+        ['!??', '?!!'], // Left
+        ['!?!!', '?!?'], // Left
+        ['!!???!????', '??!!?!!!!!!!'], // Balance
+      ]
+    }
+  },
+  methods: {
+    balance
+  }
 })
 </script>
 
 <style lang="sass" scoped>
+.func
+  color: #DF8B3E
+.synt
+  color: #A84D2C
+.comment
+  color: #698556
+</style>
 
+<style lang="sass">
+.v-text-field
+  max-width: 7rem
+  margin: 0
+  padding: 0
+  input
+    padding: 0
 </style>
