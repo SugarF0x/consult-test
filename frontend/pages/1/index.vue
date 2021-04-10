@@ -53,7 +53,7 @@ export default Vue.extend({
 
 <style lang="sass">
 .v-text-field
-  max-width: 7rem
+  max-width: 5.5rem
   margin: 0
   padding: 0
   input
