@@ -6,7 +6,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: "index"
+  name: "task-3"
 })
 </script>
 
