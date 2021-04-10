@@ -34,7 +34,9 @@ export default {
   axios: {
     // TODO: configure axios for backend when one is available
   },
-  content: {},
+  content: {
+    liveEdit: false
+  },
   vuetify: {
     theme: {
       dark: true,
