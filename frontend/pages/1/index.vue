@@ -1,5 +1,5 @@
 <template lang="pug">
-
+  ToR(:doc="$options.name")
 </template>
 
 <script lang="ts">
