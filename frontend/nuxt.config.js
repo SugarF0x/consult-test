@@ -2,7 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   ssr: false,
-  target: 'server',
+  target: 'static',
   head: {
     titleTemplate: '4kd Test',
     title: '4kd Test',
@@ -29,20 +29,12 @@ export default {
   ],
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/proxy',
     '@nuxt/content',
   ],
   axios: {
-    proxy: true
-  },
-  proxy: {
-    '/timezone': 'http://worldtimeapi.org/api',
-    '/api': {
-      target: process.env.NODE_ENV === 'development' || !process.env.BASE_URL
-        ? `http://localhost:1337`
-        : process.env.BASE_URL,
-      pathRewrite: {'^/api/': ''}
-    }
+    baseURL: process.env.NODE_ENV === 'development' || !process.env.BASE_URL
+      ? `http://localhost:1337`
+      : process.env.BASE_URL,
   },
   content: {
     liveEdit: false

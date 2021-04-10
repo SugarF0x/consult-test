@@ -139,7 +139,7 @@ export default Vue.extend({
     },
     async submit() {
       this.isLoading = true
-      await this.$axios.post('/api/cards', this.data)
+      await this.$axios.post('/cards', this.data)
         .then(() => {
           this.$emit('success', this.getPopulatedData())
           this.data = this.getInitialData()
@@ -151,7 +151,7 @@ export default Vue.extend({
     },
     async update() {
       this.isLoading = true
-      await this.$axios.put(`/api/cards/${this.data.id}`, this.data)
+      await this.$axios.put(`/cards/${this.data.id}`, this.data)
         .then(() => {
           this.edit = false
         })

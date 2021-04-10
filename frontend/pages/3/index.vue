@@ -39,7 +39,7 @@ export default Vue.extend({
   name: "task-3",
   async fetch() {
     try {
-      this.time = new Date((await this.$axios.$get('/timezone/Europe/Moscow')).utc_datetime)
+      this.time = new Date(await this.$axios.$get('/getTime'))
       this.formatTime()
     } catch {
       this.time = new Date()

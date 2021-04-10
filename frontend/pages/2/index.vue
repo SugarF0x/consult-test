@@ -20,7 +20,7 @@ export default Vue.extend({
   name: "task-2",
   async asyncData({ $content, $axios }) {
     const document = await $content('task-2').fetch()
-    const entries = await $axios.$get('/api/cards')
+    const entries = await $axios.$get('/cards')
 
     return { document, entries }
   },
