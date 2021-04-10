@@ -38,7 +38,15 @@
 
     v-main
       v-container
-        nuxt
+        v-row(justify="center")
+          v-col(
+            cols="12"
+            sm="10"
+            md="8"
+            lg="6"
+            xl="4"
+          )
+            nuxt
 </template>
 
 <script lang="ts">
