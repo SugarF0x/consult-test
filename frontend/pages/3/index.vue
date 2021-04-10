@@ -1,21 +1,23 @@
 <template lang="pug">
   div
     ToR(:doc="$options.name")
-    v-card
-      v-card-title.justify-center Время
-      v-card-text.headline.text-center {{ formattedTime }}
-      v-card-actions
-        v-btn(
-          :disabled="selectedTimezone === 'Europe/Moscow'"
-          @click="switchTimezone"
-          color="primary"
-        ) Москва
-        v-spacer
-        v-btn(
-          :disabled="selectedTimezone === 'America/New_York'"
-          @click="switchTimezone"
-          color="primary"
-        ) Нью-Йорк
+    v-row(justify="center")
+      v-col(cols="12" sm="6")
+        v-card
+          v-card-title.justify-center Время
+          v-card-text.headline.text-center {{ formattedTime }}
+          v-card-actions
+            v-btn(
+              :disabled="selectedTimezone === 'Europe/Moscow'"
+              @click="switchTimezone"
+              color="primary"
+            ) Москва
+            v-spacer
+            v-btn(
+              :disabled="selectedTimezone === 'America/New_York'"
+              @click="switchTimezone"
+              color="primary"
+            ) Нью-Йорк
 </template>
 
 <script lang="ts">

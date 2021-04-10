@@ -42,9 +42,9 @@
           v-col(
             cols="12"
             sm="10"
-            md="8"
-            lg="6"
-            xl="4"
+            md="9"
+            lg="7"
+            xl="6"
           )
             nuxt
 </template>
