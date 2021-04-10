@@ -1,20 +1,36 @@
 <template lang="pug">
   div
     nuxt-content(:document="document")
-    v-btn(@click="action") Отпарвить данные
+    Card.ma-5(
+      v-for="entry in entries"
+      :key="entry.id"
+      :entry="entry"
+    )
+    Card.ma-5(
+      fresh
+      @success="addNewEntry"
+    )
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { Entry } from "~/assets/interfaces"
 
 export default Vue.extend({
   name: "task-2",
-  async asyncData({ $content }) {
+  async asyncData({ $content, $axios }) {
     const document = await $content('task-2').fetch()
+    const entries = await $axios.$get('/api/cards')
 
-    return { document }
+    return { document, entries }
+  },
+  data() {
+    return {
+      entries: [] as Entry[]
+    }
   },
   methods: {
+    addNewEntry(entry: Entry) { this.entries.push(entry) },
     async action() {
       let response = await this.$axios.post('http://localhost:1337/cards', {
         "lastName": "Пельш",

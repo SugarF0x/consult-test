@@ -36,7 +36,13 @@ export default {
     proxy: true
   },
   proxy: {
-    '/timezone': 'http://worldtimeapi.org/api'
+    '/timezone': 'http://worldtimeapi.org/api',
+    '/api': {
+      target: process.env.NODE_ENV === 'development' || !process.env.BASE_URL
+        ? `http://localhost:1337`
+        : process.env.BASE_URL,
+      pathRewrite: {'^/api/': ''}
+    }
   },
   content: {
     liveEdit: false
