@@ -3,7 +3,17 @@
     ToR(:doc="$options.name")
     v-row(justify="center")
       v-col(cols="12" sm="6")
-        v-card
+        v-card(style="position: relative")
+          v-overlay(
+            v-if="!time"
+            absolute
+          )
+            v-row.fill-height
+              v-col.fill-height.d-flex.flex-column.justify-center.align-center
+                v-progress-circular(
+                  indeterminate
+                  size="100"
+                )
           v-card-title.justify-center Время
           v-card-text.headline.text-center {{ formattedTime }}
           v-card-actions
@@ -28,11 +38,16 @@ import { utcToZonedTime } from 'date-fns-tz'
 export default Vue.extend({
   name: "task-3",
   async fetch() {
-    this.time = new Date((await this.$axios.$get('api/timezone/Europe/Moscow')).utc_datetime)
+    try {
+      this.time = new Date((await this.$axios.$get('/timezone/Europe/Moscow')).utc_datetime)
+    } catch {
+      this.time = new Date()
+      this.formatTime()
+    }
   },
   data() {
     return {
-      time: new Date(),
+      time: null as null | Date,
       updateInterval: null as null | NodeJS.Timeout,
 
       formattedTime: '00:00:00',
@@ -42,7 +57,7 @@ export default Vue.extend({
   methods: {
     formatTime() {
       this.formattedTime = intlFormat(
-        utcToZonedTime(this.time, this.selectedTimezone),
+        utcToZonedTime(this.time as Date, this.selectedTimezone),
         { hour: '2-digit', minute: '2-digit', second: '2-digit' }
       )
     },
@@ -53,10 +68,12 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.formatTime()
+    if (this.time) this.formatTime()
     this.updateInterval = setInterval(() => {
-      this.time.setTime(this.time.getTime() + 1000)
-      this.formatTime()
+      if (this.time) {
+        this.time.setTime(this.time.getTime() + 1000)
+        this.formatTime()
+      }
     }, 1000)
   },
   beforeDestroy() {

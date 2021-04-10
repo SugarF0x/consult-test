@@ -2,7 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   ssr: false,
-  target: 'static',
+  target: 'server',
   head: {
     titleTemplate: '4kd Test',
     title: '4kd Test',
@@ -35,9 +35,9 @@ export default {
   axios: {
     proxy: true
   },
-  proxy: [
-    'http://worldtimeapi.org/api'
-  ],
+  proxy: {
+    '/timezone': 'http://worldtimeapi.org/api'
+  },
   content: {
     liveEdit: false
   },
