@@ -1,6 +1,6 @@
 # consult-test-frontend
 
-This is the frontend part for [4dk.ru](4dk.ru) test task
+This is the frontend part for [4dk.ru](https://4dk.ru) test task
 
 The task consists of 4 parts, each being documented separately in their respectively numbered `/pages` subdirectory
 
