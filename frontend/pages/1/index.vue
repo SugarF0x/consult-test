@@ -1,23 +1,24 @@
 <template lang="pug">
   div
     nuxt-content(:document="document").mb-5
-    code(
-      v-for="(values, index) in demoValues"
-      :key="'demo' + index"
-    ).d-flex
-      div.func balance
-      div (
-      v-text-field(
-        v-model="values[0]"
-        hide-details
-      )
-      div.synt ,
-      v-text-field(
-        v-model="values[1]"
-        hide-details
-      )
-      div )
-      div.comment.ml-2 // {{ balance(...values) }}
+    v-card.pa-3
+      div(
+        v-for="(values, index) in demoValues"
+        :key="'demo' + index"
+      ).d-flex
+        div.func balance
+        div (
+        v-text-field(
+          v-model="values[0]"
+          hide-details
+        )
+        div.synt ,
+        v-text-field(
+          v-model="values[1]"
+          hide-details
+        )
+        div )
+        div.comment.ml-2 // {{ balance(...values) }}
 </template>
 
 <script lang="ts">
@@ -61,6 +62,9 @@ export default Vue.extend({
   max-width: 5.5rem
   margin: 0
   padding: 0
+  display: flex
+  align-items: center
   input
     padding: 0
+    height: 18px
 </style>
