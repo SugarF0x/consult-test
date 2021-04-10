@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.task-1
     nuxt-content(:document="document").mb-5
     v-card.pa-3
       div(
@@ -58,13 +58,14 @@ export default Vue.extend({
 </style>
 
 <style lang="sass">
-.v-text-field
-  max-width: 5.5rem
-  margin: 0
-  padding: 0
-  display: flex
-  align-items: center
-  input
+.task-1
+  .v-text-field
+    max-width: 5.5rem
+    margin: 0
     padding: 0
-    height: 18px
+    display: flex
+    align-items: center
+    input
+      padding: 0
+      height: 18px
 </style>
