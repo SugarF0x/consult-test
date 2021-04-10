@@ -29,11 +29,15 @@ export default {
   ],
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxt/content',
   ],
   axios: {
-    // TODO: configure axios for backend when one is available
+    proxy: true
   },
+  proxy: [
+    'http://worldtimeapi.org/api'
+  ],
   content: {
     liveEdit: false
   },
