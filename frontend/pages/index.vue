@@ -1,5 +1,5 @@
 <template lang="pug">
-
+  ToR(doc="home")
 </template>
 
 <script lang="ts">
